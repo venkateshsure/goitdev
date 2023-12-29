@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      height: 100vh;
+      margin: 0;
+      background-color: rgb(33, 36, 44);
+    }
+    h1
+    {
+        color: white;
+    }
+
+    .progress-container {
+      width: 200px;
+      text-align: center;
+      position: relative;
+    }
+
+    .progress-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .progress-arc {
+      fill: none;
+      stroke-width: 10;
+    }
+
+    .progress-fill {
+      fill: none;
+      stroke-width: 10;
+      animation: progressAnimation 2s ease-out forwards;
+    }
+
+    .percentage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #333;
+      font-size: 14px;
+    }
+
+    
+    .progress-container:nth-child(1) .progress-fill {
+      stroke: #4caf50; 
+    }
+
+    
+    .progress-container:nth-child(2) .progress-fill {
+      stroke: #2196f3; 
+    }
+
+    
+    .progress-container:nth-child(3) .progress-fill {
+      stroke: #ff9800; 
+    }
+
+    @keyframes progressAnimation {
+      to {
+        stroke-dasharray: calc(var(--progress) * 1.57) 157; 
+      }
+    }
+    #heading
+    {
+        position: absolute;
+        top: 10%;
+    }
+  </style>
+</head>
+<body>
+
+
+<div class="progress-container">
+  <svg class="progress-svg" viewBox="0 0 100 100">
+    <path class="progress-arc" d="M50 5 A45 45 0 0 1 50 95"></path>
+    <path class="progress-fill" d="M50 5 A45 45 0 0 1 50 95" style="--progress: 75;"></path>
+  </svg>
+  <div class="percentage"><h1>75%</h1></div>
+</div>
+
+<div class="progress-container">
+  <svg class="progress-svg" viewBox="0 0 100 100">
+    <path class="progress-arc" d="M50 5 A45 45 0 0 1 50 95"></path>
+    <path class="progress-fill" d="M50 5 A45 45 0 0 1 50 95" style="--progress: 60;"></path>
+  </svg>
+  <div class="percentage"><h1>60%</h1></div>
+</div>
+
+<div class="progress-container">
+  <svg class="progress-svg" viewBox="0 0 100 100">
+    <path class="progress-arc" d="M50 5 A45 45 0 0 1 50 95"></path>
+    <path class="progress-fill" d="M50 5 A45 45 0 0 1 50 95" style="--progress: 30;"></path>
+  </svg>
+  <div class="percentage"><h1>30%</h1></div>
+</div>
+<div id="heading">
+    <center><h1>PROGRESS BARS</h1></center>
+</div>
+
+<script>
+ 
+  const progressBar1 = document.querySelector('.progress-container:nth-child(1) .progress-fill');
+  const progressBar2 = document.querySelector('.progress-container:nth-child(2) .progress-fill');
+  const progressBar3 = document.querySelector('.progress-container:nth-child(3) .progress-fill');
+
+  setProgress(progressBar1, 75); 
+  setProgress(progressBar2, 60); 
+  setProgress(progressBar3, 30); 
+
+  function setProgress(progressBar, percentage) {
+    progressBar.style.setProperty('--progress', percentage);
+    progressBar.nextElementSibling.textContent = percentage + '%';
+  }
+</script>
+
+</body>
+</html>
